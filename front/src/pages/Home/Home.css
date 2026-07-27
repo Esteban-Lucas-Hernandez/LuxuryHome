@@ -1,0 +1,353 @@
+/* ==========================================================================
+   Home.css - Edición Editorial de Lujo (Charcoal #1a1a1a & Gold #c5a059)
+   ========================================================================== */
+
+:root {
+  --color-charcoal: #1a1a1a;
+  --color-charcoal-dark: #111111;
+  --color-charcoal-card: #222222;
+  --color-gold: #c5a059;
+  --color-gold-light: #e5c158;
+  --color-gold-dark: #b8973d;
+  --color-gold-gradient: linear-gradient(135deg, #c5a059 0%, #e5c158 50%, #b8973d 100%);
+  --color-bg-light: #f8f9fa;
+  --color-bg-soft: #f4f5f7;
+  --color-text-muted: #6c757d;
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 15px 35px rgba(0, 0, 0, 0.12);
+  --transition-fast: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.home-advanced-page {
+  overflow-x: hidden;
+  background-color: #ffffff;
+  color: var(--color-charcoal);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* 1. HERO SLIDER EDITORIAL */
+.hero-section {
+  position: relative;
+  height: 85vh;
+  min-height: 580px;
+  background-color: var(--color-charcoal-dark);
+}
+
+.hero-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1.2s ease-in-out, visibility 1.2s ease-in-out;
+  display: flex;
+  align-items: center;
+}
+
+.hero-slide.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(17, 17, 17, 0.88) 0%,
+    rgba(17, 17, 17, 0.65) 50%,
+    rgba(17, 17, 17, 0.35) 100%
+  );
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(26, 26, 26, 0.85);
+  border: 1px solid rgba(197, 160, 89, 0.4);
+  backdrop-filter: blur(8px);
+  padding: 0.45rem 1.25rem;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+}
+
+.gold-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-gold-gradient);
+  display: inline-block;
+}
+
+.hero-title {
+  font-size: clamp(2.4rem, 5vw, 4.2rem);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.5px;
+  margin-bottom: 1.25rem;
+  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.hero-subtitle {
+  font-size: clamp(1.05rem, 1.8vw, 1.3rem);
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 2.5rem;
+  max-width: 620px;
+  line-height: 1.6;
+}
+
+.hero-dots {
+  position: absolute;
+  bottom: 2.5rem;
+  right: 3rem;
+  z-index: 3;
+  display: flex;
+  gap: 0.75rem;
+}
+
+.hero-dots .dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.hero-dots .dot.active {
+  width: 34px;
+  border-radius: 8px;
+  background: var(--color-gold-gradient);
+  border-color: var(--color-gold);
+}
+
+/* BOTONES LUXURY */
+.btn-gold-solid {
+  background: var(--color-gold-gradient);
+  color: var(--color-charcoal);
+  border: none;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 6px;
+  box-shadow: 0 4px 15px rgba(197, 160, 89, 0.3);
+  transition: var(--transition-fast);
+}
+
+.btn-gold-solid:hover {
+  background: linear-gradient(135deg, #e5c158 0%, #c5a059 100%);
+  color: var(--color-charcoal-dark);
+  box-shadow: 0 6px 20px rgba(197, 160, 89, 0.5);
+  transform: translateY(-2px);
+}
+
+.btn-outline-custom {
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  color: #ffffff;
+  background: transparent;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-radius: 6px;
+  transition: var(--transition-fast);
+}
+
+.btn-outline-custom:hover {
+  background: #ffffff;
+  color: var(--color-charcoal);
+  transform: translateY(-2px);
+}
+
+.text-gold {
+  color: var(--color-gold) !important;
+}
+
+.gold-accent-text {
+  background: var(--color-gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.section-subtitle-gold {
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 2.5px;
+  color: var(--color-gold-dark);
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+.section-title-dark {
+  font-size: clamp(2rem, 3.2vw, 2.75rem);
+  font-weight: 800;
+  color: var(--color-charcoal);
+  letter-spacing: -0.5px;
+}
+
+.section-body-text {
+  font-size: 1.1rem;
+  color: var(--color-text-muted);
+  line-height: 1.7;
+}
+
+.btn-link-gold {
+  color: var(--color-gold-dark);
+  transition: var(--transition-fast);
+}
+
+.btn-link-gold:hover {
+  color: var(--color-gold);
+  transform: translateX(4px);
+}
+
+/* 2. FILOSOFÍA & CONCEPTO */
+.editorial-glass-badge {
+  background: rgba(26, 26, 26, 0.88);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(197, 160, 89, 0.4);
+}
+
+.tracking-1 {
+  letter-spacing: 1.5px;
+}
+
+.border-gold-subtle {
+  border: 1px solid rgba(197, 160, 89, 0.25) !important;
+}
+
+.border-gold-sub.text-light-muted {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+/* 3. SHOWCASE TECNOLÓGICO 3D */
+.bg-dark-luxury {
+  background-color: var(--color-charcoal-dark);
+}
+
+.tech-showcase-section p {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.tech-feature-card {
+  background: var(--color-charcoal-card);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition: var(--transition-fast);
+}
+
+.tech-feature-card h4 {
+  color: #ffffff !important;
+}
+
+.tech-feature-card p {
+  color: rgba(255, 255, 255, 0.85) !important;
+  font-size: 0.98rem;
+  line-height: 1.6;
+}
+
+.tech-feature-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(197, 160, 89, 0.6);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.tech-icon-circle {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--color-gold-gradient);
+  color: var(--color-charcoal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+/* 4. COLECCIONES EDITORIALES */
+.collection-editorial-card {
+  height: 380px;
+  background-color: var(--color-charcoal);
+}
+
+.collection-img {
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.collection-editorial-card:hover .collection-img {
+  transform: scale(1.06);
+}
+
+.collection-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to top, rgba(17, 17, 17, 0.9) 0%, rgba(17, 17, 17, 0.2) 65%);
+}
+
+.text-light-muted {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+/* 5. MÉTRICAS & TESTIMONIOS VIP */
+.bg-light-soft {
+  background-color: var(--color-bg-soft);
+}
+
+.testimonial-card {
+  border: 1px solid rgba(197, 160, 89, 0.2) !important;
+  transition: var(--transition-fast);
+}
+
+.testimonial-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg) !important;
+  border-color: rgba(197, 160, 89, 0.5) !important;
+}
+
+.author-avatar {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: rgba(197, 160, 89, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+
+/* 6. CALL TO ACTION FINAL */
+.cta-glass-container {
+  background: var(--color-charcoal-card);
+  border: 1px solid rgba(197, 160, 89, 0.4);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+}
+
+.cta-glass-container p {
+  color: rgba(255, 255, 255, 0.85) !important;
+}

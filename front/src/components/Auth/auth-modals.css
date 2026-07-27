@@ -1,0 +1,363 @@
+/*
+ * Este archivo contiene los estilos CSS para los modales de autenticación (inicio de sesión, registro).
+ * Define el diseño del overlay, animaciones fluidas, y la estructura principal del modal.
+ * Incluye estilos para hacer la interfaz responsive y mantener un diseño moderno ("premium").
+ */
+/* Estilos profesionales para modales de autenticación - Producción */
+
+/* Contenedor principal del modal */
+.advanced-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px); /* Hace el fondo borroso */
+  -webkit-backdrop-filter: blur(8px); /* Soporte para Safari */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1050;
+  padding: 1rem;
+  animation: fadeInOverlay 0.2s ease-out;
+}
+
+@keyframes fadeInOverlay {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Contenido del modal */
+.advanced-modal-content {
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 400px;
+  overflow: hidden;
+  transform: translateY(20px);
+  animation: modalSlideIn 0.3s ease-out forwards; /* Animación de entrada suave desde abajo */
+  position: relative;
+}
+
+.advanced-modal-content.modal-with-image {
+  max-width: 850px;
+  display: flex;
+  flex-direction: row;
+}
+
+.modal-content-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.modal-content-right {
+  flex: 1;
+  background: #f8f9fa;
+  position: relative;
+  overflow: hidden;
+  min-width: 400px; /* Ensures the image side is large enough */
+}
+
+.modal-content-right img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+@media (max-width: 768px) {
+  .advanced-modal-content.modal-with-image {
+    flex-direction: column;
+    max-width: 400px;
+  }
+  .modal-content-right {
+    display: none; /* Ocultar imagen en móvil para ahorrar espacio */
+  }
+}
+
+@keyframes modalSlideIn {
+  to { transform: translateY(0); }
+}
+
+/* Header del modal */
+.advanced-modal-header {
+  background: #ffffff; /* Fondo blanco para integrarse con el body */
+  color: #2c3e50;
+  padding: 2rem 2rem 1rem 2rem;
+  position: relative;
+  border-bottom: none; /* Quitamos el borde para un look más limpio */
+}
+
+.advanced-modal-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin: 0;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #1a1a1a;
+}
+
+/* El botón de cerrar ahora flotará sobre todo el modal (esquina superior derecha) */
+.advanced-modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(0, 0, 0, 0.5); /* Fondo oscuro semitransparente para que contraste con la imagen */
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 10; /* Asegurar que esté por encima de la imagen */
+}
+
+.advanced-modal-close:hover {
+  background: rgba(0, 0, 0, 0.8);
+  transform: scale(1.05);
+}
+
+.advanced-modal-close svg {
+  width: 18px;
+  height: 18px;
+  fill: white;
+}
+
+/* Body del modal */
+.advanced-modal-body {
+  padding: 1.5rem;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+/* Scrollbar personalizado */
+.advanced-modal-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.advanced-modal-body::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.advanced-modal-body::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+.advanced-modal-body::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* Formulario mejorado */
+.advanced-form-group {
+  margin-bottom: 1.25rem;
+  position: relative;
+}
+
+.advanced-form-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.advanced-form-input {
+  width: 100%;
+  padding: 0.75rem 0.75rem 0.75rem 2.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  background: #fff;
+  position: relative;
+}
+
+.advanced-form-input:focus {
+  outline: none;
+  border-color: #1a1a1a; /* Charcoal oscuro premium */
+  box-shadow: 0 0 0 2px rgba(26, 26, 26, 0.15);
+  background: #fff;
+}
+
+.advanced-form-input-icon {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #7f8c8d;
+  transition: all 0.2s ease;
+}
+
+.advanced-form-input:focus + .advanced-form-input-icon,
+.advanced-form-input:not(:placeholder-shown) + .advanced-form-input-icon {
+  color: #1a1a1a; /* Charcoal oscuro */
+}
+
+/* Botón de submit mejorado */
+.advanced-submit-btn {
+  width: 100%;
+  padding: 0.875rem;
+  background: #1a1a1a; /* Charcoal oscuro premium */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.advanced-submit-btn:hover {
+  background: #333333; /* Gris muy oscuro al hacer hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-1px);
+}
+
+.advanced-submit-btn:active {
+  transform: translateY(0);
+}
+
+.advanced-submit-btn:disabled {
+  background: #bdc3c7;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.advanced-submit-btn-loading {
+  position: relative;
+  color: transparent;
+}
+
+.advanced-submit-btn-loading::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 50%;
+  left: 50%;
+  margin-left: -8px;
+  margin-top: -8px;
+  border: 2px solid transparent;
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Mensajes de error mejorados */
+.advanced-error-alert {
+  background: #e74c3c;
+  color: white;
+  padding: 0.75rem 1rem;
+  border-radius: 4px;
+  margin-bottom: 1.25rem;
+  font-weight: 500;
+  box-shadow: 0 2px 4px rgba(231, 76, 60, 0.2);
+  border: none;
+  font-size: 0.875rem;
+}
+
+/* Links de navegación entre formularios */
+.advanced-switch-link {
+  text-align: center;
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid #ecf0f1;
+  color: #7f8c8d;
+  font-size: 0.875rem;
+}
+
+.advanced-switch-link button {
+  background: none;
+  border: none;
+  color: #1a1a1a; /* Charcoal oscuro */
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 0.25rem;
+  transition: all 0.2s ease;
+  text-decoration: underline;
+}
+
+.advanced-switch-link button:hover {
+  color: #555555;
+  text-decoration: none;
+}
+
+/* Responsive design optimizado */
+@media (max-width: 576px) {
+  .advanced-modal-overlay {
+    padding: 0.5rem;
+  }
+  
+  .advanced-modal-content {
+    margin: 0;
+    max-width: 100%;
+    border-radius: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .advanced-modal-header {
+    padding: 1rem;
+    border-radius: 0;
+  }
+  
+  .advanced-modal-body {
+    padding: 1rem;
+    flex: 1;
+    overflow-y: auto;
+  }
+  
+  .advanced-modal-title {
+    font-size: 1.125rem;
+  }
+  
+  .advanced-form-group {
+    margin-bottom: 1rem;
+  }
+  
+  .advanced-submit-btn {
+    padding: 0.75rem;
+  }
+}
+
+/* Para pantallas muy pequeñas */
+@media (max-height: 600px) {
+  .advanced-modal-content {
+    max-height: 100vh;
+  }
+  
+  .advanced-modal-body {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+  
+  .advanced-form-group {
+    margin-bottom: 1rem;
+  }
+}

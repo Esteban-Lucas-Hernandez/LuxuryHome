@@ -1,0 +1,85 @@
+/* ==========================================================================
+   Footer.css - Pie de Página Estilo Luxury (Charcoal #111111 & Gold #c5a059)
+   ========================================================================== */
+
+.main-footer {
+  background-color: #111111;
+  border-top: 1px solid rgba(197, 160, 89, 0.25);
+  font-size: 0.95rem;
+}
+
+.footer-gold-line {
+  height: 3px;
+  width: 100%;
+  background: linear-gradient(90deg, #c5a059 0%, #e5c158 50%, #b8973d 100%);
+}
+
+.footer-brand img {
+  height: 38px;
+  object-fit: contain;
+  filter: invert(1);
+  mix-blend-mode: screen;
+}
+
+.text-gold {
+  color: #c5a059 !important;
+}
+
+.text-light-muted {
+  color: rgba(255, 255, 255, 0.8) !important;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.footer-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.footer-links li {
+  margin-bottom: 0.6rem;
+}
+
+.footer-links a {
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.footer-links a:hover {
+  color: #c5a059;
+  transform: translateX(4px);
+}
+
+.social-icon-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #1a1a1a;
+  border: 1px solid rgba(197, 160, 89, 0.3);
+  color: #c5a059;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.social-icon-btn:hover {
+  background: linear-gradient(135deg, #c5a059 0%, #e5c158 100%);
+  color: #111111;
+  border-color: #c5a059;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(197, 160, 89, 0.3);
+}
+
+.footer-bottom-bar {
+  background-color: #0a0a0a;
+  border-top-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.footer-legal-links a:hover {
+  color: #c5a059 !important;
+}

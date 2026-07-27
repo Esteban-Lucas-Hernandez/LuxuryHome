@@ -1,0 +1,420 @@
+/* Luxury Premium Products Page Styles */
+
+.products-page {
+  padding-top: 80px;
+  min-height: 100vh;
+  background-color: #fbfbfb;
+  font-family: 'Montserrat', sans-serif; /* assuming Montserrat is loaded from other luxury changes */
+}
+
+/* Header Section */
+.products-header {
+  background: linear-gradient(to right, rgba(26, 26, 26, 0.85), rgba(26, 26, 26, 0.6)), url('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1920&h=1080&fit=crop') center/cover fixed;
+  color: #fff;
+  padding: 140px 0 60px;
+  position: relative;
+  overflow: hidden;
+  margin-top: -80px; /* Pull up under navbar */
+}
+
+.header-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.page-title {
+  font-size: 4rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  text-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.page-subtitle {
+  font-size: 1.1rem;
+  opacity: 0.85;
+  max-width: 600px;
+  margin: 0 auto;
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
+/* Filters Section */
+.filters-section {
+  padding: 0;
+  margin-top: -35px;
+  position: relative;
+  z-index: 10;
+}
+
+.filters-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  background: #ffffff;
+  padding: 15px 25px;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  border: 1px solid #f0f0f0;
+}
+
+.search-box {
+  position: relative;
+  flex: 1;
+  min-width: 250px;
+}
+
+.search-box input {
+  padding: 12px 20px 12px 45px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  width: 100%;
+  font-size: 0.95rem;
+  background: rgba(255, 255, 255, 0.9);
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.search-box input:focus {
+  outline: none;
+  border-color: #1a1a1a;
+  box-shadow: 0 0 0 4px rgba(26, 26, 26, 0.05);
+}
+
+.search-box i {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #1a1a1a;
+  font-size: 1rem;
+}
+
+.filters-row {
+  display: flex;
+  gap: 15px;
+  flex: 2;
+}
+
+.filters-row .form-select {
+  flex: 1;
+  padding: 12px 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.filters-row .form-select:focus {
+  outline: none;
+  border-color: #1a1a1a;
+  box-shadow: 0 0 0 4px rgba(26, 26, 26, 0.05);
+}
+
+/* Results Info */
+.results-info {
+  background: transparent;
+  padding: 10px 0;
+  border: none;
+  font-size: 0.95rem;
+  color: #666;
+  letter-spacing: 0.5px;
+}
+
+.results-info strong {
+  color: #1a1a1a;
+  font-weight: 700;
+}
+
+/* Products Section */
+.products-section {
+  padding: 30px 0 80px;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 40px;
+  margin-top: 20px;
+}
+
+/* Product Card - Luxury Minimalist */
+.product-card {
+  background: white;
+  border-radius: 0;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+  transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
+  border: 1px solid #f0f0f0;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+  border-color: #e0e0e0;
+}
+
+/* Product Image */
+.product-image {
+  position: relative;
+  height: 320px;
+  overflow: hidden;
+  background: #f9f9f9;
+}
+
+.product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 20px;
+  transition: transform 0.7s ease;
+}
+
+.product-card:hover .product-image img {
+  transform: scale(1.05);
+}
+
+/* Product Overlay */
+.product-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(5px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.product-card:hover .product-overlay {
+  opacity: 1;
+}
+
+.product-overlay .btn {
+  transform: translateY(15px);
+  opacity: 0;
+  transition: all 0.4s ease 0.1s;
+  width: 70%;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 10px;
+}
+
+.product-card:hover .product-overlay .btn {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Override Buttons for Luxury Theme */
+.product-overlay .btn-primary {
+  background-color: transparent;
+  color: #1a1a1a;
+  border: 1px solid #1a1a1a;
+}
+.product-overlay .btn-primary:hover {
+  background-color: #f0f0f0;
+}
+
+.product-overlay .btn-success {
+  background-color: #1a1a1a;
+  color: #fff;
+  border: 1px solid #1a1a1a;
+}
+.product-overlay .btn-success:hover:not(:disabled) {
+  background-color: #333;
+  border-color: #333;
+}
+
+/* Badges */
+.stock-badge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  padding: 4px 10px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  z-index: 3;
+  border-radius: 2px;
+}
+
+.low-stock {
+  background: #fff;
+  color: #d32f2f;
+  border: 1px solid #d32f2f;
+}
+
+.out-of-stock {
+  background: #f5f5f5;
+  color: #999;
+  border: 1px solid #ddd;
+}
+
+.badge-3d {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: #1a1a1a;
+  color: white;
+  padding: 4px 10px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  z-index: 3;
+  border-radius: 2px;
+}
+
+/* Product Info */
+.product-info {
+  padding: 25px 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.product-category {
+  color: #999;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+}
+
+.product-name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 10px;
+  line-height: 1.4;
+  letter-spacing: 0.5px;
+}
+
+.product-description {
+  color: #777;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  flex: 1; /* Pushes meta to bottom */
+}
+
+/* Product Meta */
+.product-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-top: 20px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.product-price {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #1a1a1a;
+}
+
+.product-stock {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #999;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.product-stock i {
+  color: #1a1a1a;
+}
+
+/* No Products State */
+.no-products {
+  text-align: center;
+  padding: 100px 20px;
+  color: #999;
+}
+
+.no-products i {
+  color: #eaeaea;
+}
+
+.no-products h3 {
+  margin: 20px 0 10px;
+  color: #1a1a1a;
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .page-title {
+    font-size: 3rem;
+  }
+  
+  .filters-container {
+    flex-direction: column;
+    padding: 20px;
+  }
+  
+  .search-box {
+    width: 100%;
+  }
+  
+  .filters-row {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+  
+  .products-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+  }
+}
+
+@media (max-width: 768px) {
+  .products-header {
+    padding: 80px 0 60px;
+  }
+  
+  .page-title {
+    font-size: 2.2rem;
+  }
+  
+  .page-subtitle {
+    font-size: 0.95rem;
+  }
+  
+  .filters-section {
+    margin-top: -20px;
+  }
+  
+  .filters-row {
+    flex-direction: column;
+  }
+  
+  .products-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+}

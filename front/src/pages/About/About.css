@@ -1,0 +1,239 @@
+/* ==========================================================================
+   About.css - Edición Editorial de Lujo para Nosotros (Charcoal & Gold)
+   ========================================================================== */
+
+:root {
+  --color-charcoal: #1a1a1a;
+  --color-charcoal-dark: #111111;
+  --color-charcoal-card: #222222;
+  --color-gold: #c5a059;
+  --color-gold-light: #e5c158;
+  --color-gold-dark: #b8973d;
+  --color-gold-gradient: linear-gradient(135deg, #c5a059 0%, #e5c158 50%, #b8973d 100%);
+  --color-bg-light: #f8f9fa;
+  --color-bg-soft: #f4f5f7;
+  --color-text-muted: #6c757d;
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 15px 35px rgba(0, 0, 0, 0.12);
+  --transition-fast: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.about-luxury-page {
+  overflow-x: hidden;
+  background-color: #ffffff;
+  color: var(--color-charcoal);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* 1. ABOUT HERO HEADER */
+.about-hero-section {
+  height: 50vh;
+  min-height: 380px;
+  background: url("https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1920&h=800&fit=crop") center/cover no-repeat;
+  display: flex;
+  align-items: center;
+}
+
+.about-hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, rgba(17, 17, 17, 0.85) 0%, rgba(17, 17, 17, 0.95) 100%);
+  z-index: 1;
+}
+
+.about-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(26, 26, 26, 0.85);
+  border: 1px solid rgba(197, 160, 89, 0.4);
+  backdrop-filter: blur(8px);
+  padding: 0.45rem 1.25rem;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #ffffff;
+}
+
+.about-hero-title {
+  font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+  letter-spacing: -0.5px;
+  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* 2. NUESTRA HISTORIA & CONCEPTO */
+.section-subtitle-gold {
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 2.5px;
+  color: var(--color-gold-dark);
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+.section-title-dark {
+  font-size: clamp(2rem, 3.2vw, 2.75rem);
+  font-weight: 800;
+  color: var(--color-charcoal);
+  letter-spacing: -0.5px;
+}
+
+.section-body-text {
+  font-size: 1.1rem;
+  color: var(--color-text-muted);
+  line-height: 1.7;
+}
+
+.gold-accent-text {
+  background: var(--color-gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gold-gradient {
+  background: var(--color-gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.border-gold-subtle {
+  border: 1px solid rgba(197, 160, 89, 0.3) !important;
+}
+
+.about-floating-badge {
+  background: rgba(26, 26, 26, 0.88);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(197, 160, 89, 0.4);
+}
+
+.tracking-1 {
+  letter-spacing: 1.5px;
+}
+
+/* 3. PILARES & VALORES DE MARCA */
+.bg-dark-luxury {
+  background-color: var(--color-charcoal-dark);
+}
+
+.text-light-muted {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.about-value-card {
+  background: var(--color-charcoal-card);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition: var(--transition-fast);
+}
+
+.about-value-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(197, 160, 89, 0.6);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.about-icon-circle {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: var(--color-gold-gradient);
+  color: var(--color-charcoal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+  font-weight: bold;
+}
+
+/* 4. EVOLUCIÓN HISTÓRICA / TIMELINE */
+.timeline-card {
+  border: 1px solid rgba(197, 160, 89, 0.25) !important;
+  transition: var(--transition-fast);
+}
+
+.timeline-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--color-gold) !important;
+  box-shadow: var(--shadow-md) !important;
+}
+
+.timeline-year {
+  border: 1px solid rgba(197, 160, 89, 0.4);
+}
+
+/* 5. EQUIPO LÍDER Y ARTESANOS */
+.bg-light-soft {
+  background-color: var(--color-bg-soft);
+}
+
+.team-card {
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  transition: var(--transition-fast);
+}
+
+.team-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg) !important;
+  border-color: rgba(197, 160, 89, 0.4) !important;
+}
+
+.team-avatar-wrapper {
+  border: 3px solid var(--color-gold);
+}
+
+/* 6. CALL TO ACTION FINAL */
+.about-cta-box {
+  background: var(--color-charcoal-card);
+  border: 1px solid rgba(197, 160, 89, 0.4);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+}
+
+.btn-gold-solid {
+  background: var(--color-gold-gradient);
+  color: var(--color-charcoal);
+  border: none;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 6px;
+  box-shadow: 0 4px 15px rgba(197, 160, 89, 0.3);
+  transition: var(--transition-fast);
+}
+
+.btn-gold-solid:hover {
+  background: linear-gradient(135deg, #e5c158 0%, #c5a059 100%);
+  color: var(--color-charcoal-dark);
+  box-shadow: 0 6px 20px rgba(197, 160, 89, 0.5);
+  transform: translateY(-2px);
+}
+
+.btn-outline-custom {
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  color: #ffffff;
+  background: transparent;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-radius: 6px;
+  transition: var(--transition-fast);
+}
+
+.btn-outline-custom:hover {
+  background: #ffffff;
+  color: var(--color-charcoal);
+  transform: translateY(-2px);
+}
+
+.btn-link-gold {
+  color: var(--color-gold-dark);
+  transition: var(--transition-fast);
+}
+
+.btn-link-gold:hover {
+  color: var(--color-gold);
+  transform: translateX(4px);
+}
