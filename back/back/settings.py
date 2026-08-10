@@ -172,3 +172,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # ⚠️ TEMPORAL mientras se despliega el frontend
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
+
+# Fixtures directory
+FIXTURE_DIRS = [
+    BASE_DIR / 'fixtures',
+]

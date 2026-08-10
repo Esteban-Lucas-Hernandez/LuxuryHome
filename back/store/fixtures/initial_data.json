@@ -1,0 +1,282 @@
+[
+  {
+    "model": "store.category",
+    "pk": 1,
+    "fields": {
+      "name": "Realidad Virtual",
+      "parent": 12,
+      "image_path": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0HSaL7A6mI_1L-thplnMgqIQ7Ay969uVqFq91lv_XHc7a75yj6TKuutLy&s"
+    }
+  },
+  {
+    "model": "store.category",
+    "pk": 2,
+    "fields": {
+      "name": "Consolas",
+      "parent": 12,
+      "image_path": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiIM5_NauQoupVMt5Dkcc1UvM54cOMhO1_SYEfMYKQvQ&s"
+    }
+  },
+  {
+    "model": "store.category",
+    "pk": 3,
+    "fields": {
+      "name": "Sillas",
+      "parent": 12,
+      "image_path": "https://virtualmuebles.com/cdn/shop/collections/sillas-gamer_3d2915fb-c641-4ac2-bcf4-62666aeff150.jpg?v=1770215304"
+    }
+  },
+  {
+    "model": "store.category",
+    "pk": 4,
+    "fields": {
+      "name": "Mouse",
+      "parent": 12,
+      "image_path": "https://www.logitechstore.com.co/cdn/shop/collections/CATEGORIA-BannerSlider_G_Mouse.jpg?v=1753156979"
+    }
+  },
+  {
+    "model": "store.category",
+    "pk": 8,
+    "fields": {
+      "name": "Oficina",
+      "parent": null,
+      "image_path": "oficina.jpg"
+    }
+  },
+  {
+    "model": "store.category",
+    "pk": 9,
+    "fields": {
+      "name": "Comedores",
+      "parent": null,
+      "image_path": "comedores.jpg"
+    }
+  },
+  {
+    "model": "store.category",
+    "pk": 10,
+    "fields": {
+      "name": "Dormitorios",
+      "parent": null,
+      "image_path": "dormitorios.jpg"
+    }
+  },
+  {
+    "model": "store.category",
+    "pk": 11,
+    "fields": {
+      "name": "Salas",
+      "parent": null,
+      "image_path": "salas.jpg"
+    }
+  },
+  {
+    "model": "store.category",
+    "pk": 12,
+    "fields": {
+      "name": "gamer",
+      "parent": null,
+      "image_path": null
+    }
+  },
+  {
+    "model": "store.category",
+    "pk": 14,
+    "fields": {
+      "name": "Sofás",
+      "parent": 11,
+      "image_path": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlLVZYaNoOvsWpCpXPPD3KHmEN2Ae_C4qCMrEstRvglc39LzHV1yJw09Y7&s=10"
+    }
+  },
+  {
+    "model": "store.category",
+    "pk": 15,
+    "fields": {
+      "name": "Sillones",
+      "parent": 11,
+      "image_path": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSE4IgSEbz--naP3_pTdXOj0rUkbspu9ZxXzXgruDWCDQSFU4_EXRmmhht&s=10"
+    }
+  },
+  {
+    "model": "store.category",
+    "pk": 16,
+    "fields": {
+      "name": "Estanterías",
+      "parent": 11,
+      "image_path": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJSUQ0NWnXhIOKSI9DhRi_JNVPRkSgLGxhyGPnCFO8GFpz0pOuDSzLtkQP&s=10"
+    }
+  },
+  {
+    "model": "store.category",
+    "pk": 17,
+    "fields": {
+      "name": "Lámparas",
+      "parent": 11,
+      "image_path": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTb0C-2umE009I0GIshloGR0NYy7gxHGbE0-1ki7Sxxv3uzCb_BJ_wNuI32&s=10"
+    }
+  },
+  {
+    "model": "store.category",
+    "pk": 18,
+    "fields": {
+      "name": "Camas",
+      "parent": 10,
+      "image_path": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtLpbeeGNPnV_tThtQQNRY1KLHiihRUCUacUuWLSTuZEETba3a2b3M9lE&s=10"
+    }
+  },
+  {
+    "model": "store.category",
+    "pk": 19,
+    "fields": {
+      "name": "Almohadas",
+      "parent": 10,
+      "image_path": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVCDSNB9sqCpAf4T-YUCk3NGOVKVGrmItlNjVpFMcv_gkZKGSkHVza40_l&s=10"
+    }
+  },
+  {
+    "model": "store.category",
+    "pk": 20,
+    "fields": {
+      "name": "Tocadores",
+      "parent": 10,
+      "image_path": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVrWPfQLTc91KyB-7boBXQL8hQK0zd6c-SVnrYMwGE9Msw1CsCkj3OglU&s=10"
+    }
+  },
+  {
+    "model": "store.category",
+    "pk": 21,
+    "fields": {
+      "name": "Clósets",
+      "parent": 10,
+      "image_path": "https://images.homify.com/v1449861980/p/photo/image/1189463/31_Santo.jpg"
+    }
+  },
+  {
+    "model": "store.category",
+    "pk": 22,
+    "fields": {
+      "name": "Bancas",
+      "parent": 9,
+      "image_path": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMrMk6CwtcotWmRZh8XRglLJp_p5LkUrvW38VLyz_91L_oHpt_VGqerPQ&s=10"
+    }
+  },
+  {
+    "model": "store.category",
+    "pk": 23,
+    "fields": {
+      "name": "Aparadores",
+      "parent": 9,
+      "image_path": "https://www.decoracionbeltran.com/blog/wp-content/uploads/2023/11/buffet-aparador-en-madera-de-mindi-decapada-coleccion-everest.jpg"
+    }
+  },
+  {
+    "model": "store.category",
+    "pk": 24,
+    "fields": {
+      "name": "Vitrinas",
+      "parent": 9,
+      "image_path": "https://www.idfdesign.es/imagenes/vitrinas-pequenas-vitrinas-clasicas-de-lujo/giotto-vitrina-vitrina-elegante.jpg"
+    }
+  },
+  {
+    "model": "store.category",
+    "pk": 25,
+    "fields": {
+      "name": "Escritorios",
+      "parent": 8,
+      "image_path": "https://tugocolombia.vtexassets.com/arquivos/ids/301605/620928-10.jpg?v=638606242211030000"
+    }
+  },
+  {
+    "model": "store.category",
+    "pk": 26,
+    "fields": {
+      "name": "Archivadores",
+      "parent": 8,
+      "image_path": "https://http2.mlstatic.com/D_NQ_NP_875112-MCO110762910470_052026-O.webp"
+    }
+  },
+  {
+    "model": "store.category",
+    "pk": 27,
+    "fields": {
+      "name": "Estanterías",
+      "parent": 8,
+      "image_path": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTq17HfZQikwquWslQ1paOA6xyr6aKe1QE1XAZ_pGD5tn4LGwPyUMUFDVA&s=10"
+    }
+  },
+  {
+    "model": "store.category",
+    "pk": 28,
+    "fields": {
+      "name": "Gabinetes",
+      "parent": 8,
+      "image_path": "https://bylmo.com/cdn/shop/files/1023038_gabimete-de-oficina-office-fresno-81x33cm-rectangular-flotante_5.jpg?v=1771089306&width=1500"
+    }
+  },
+  {
+    "model": "store.furniture",
+    "pk": 1,
+    "fields": {
+      "category": 3,
+      "name": "Silla Gaming GAMMIG",
+      "description": "Silla gaming profesional estilo GAMMIG con diseño aerodinámico, tapizado de cuero sintético, respaldo reclinable hasta 160°, almohada cervical y soporte lumbar.",
+      "price": "0.00",
+      "image_path": "gammig.png",
+      "model_3d_path": "gaming_chair.glb",
+      "stock": 10,
+      "is_3d_active": true,
+      "scale_factor": 1.0,
+      "created_at": "2026-07-15T17:19:08Z"
+    }
+  },
+  {
+    "model": "store.furniture",
+    "pk": 2,
+    "fields": {
+      "category": 3,
+      "name": "Silla Streamer Pro",
+      "description": "Silla especialmente diseñada para streamers y creadores de contenido. Base giratoria 360°, tela transpirable, altura ajustable y estructura metálica reforzada para sesiones prolongadas frente a cámara.",
+      "price": "0.00",
+      "image_path": "sillaStreamer.png",
+      "model_3d_path": "office_chair.glb",
+      "stock": 10,
+      "is_3d_active": true,
+      "scale_factor": 1.0,
+      "created_at": "2026-07-15T17:19:08Z"
+    }
+  },
+  {
+    "model": "store.furniture",
+    "pk": 3,
+    "fields": {
+      "category": 9,
+      "name": "Silla de Madera",
+      "description": "Silla de comedor artesanal fabricada en madera maciza de roble. Acabado natural con barniz protector. Diseño clásico y resistente, perfecta para comedor o sala de reuniones.",
+      "price": "0.00",
+      "image_path": "sillaMadera.png",
+      "model_3d_path": "wooden_dining_chair.glb",
+      "stock": 10,
+      "is_3d_active": true,
+      "scale_factor": 1.0,
+      "created_at": "2026-07-15T17:19:08Z"
+    }
+  },
+  {
+    "model": "store.furniture",
+    "pk": 4,
+    "fields": {
+      "category": 8,
+      "name": "Silla de Oficina",
+      "description": "Silla ergonómica de oficina con soporte lumbar ajustable, ruedas multidireccionales y reposabrazos acolchados.",
+      "price": "0.00",
+      "image_path": "silla.png",
+      "model_3d_path": "chair.glb",
+      "stock": 10,
+      "is_3d_active": true,
+      "scale_factor": 1.0,
+      "created_at": "2026-07-15T17:19:08Z"
+    }
+  }
+]
