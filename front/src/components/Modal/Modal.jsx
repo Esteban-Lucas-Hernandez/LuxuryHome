@@ -1,11 +1,24 @@
-// importación del componente react
-// importación de estilos css para el modal
 import React from 'react';
 import './Modal.css';
 
-// componente modal - crea una ventana modal superpuesta
+/**
+ * Componente Modal Reutilizable (Modal).
+ * Crea una ventana emergente superpuesta con soporte para título personalizado,
+ * botón de cierre en la esquina superior derecha, contenido hijo dinámico y
+ * opcionalmente una columna con imagen gráfica lateral.
+ * 
+ * @param {{
+ *   isOpen: boolean,
+ *   onClose: function(): void,
+ *   title: React.ReactNode,
+ *   children: React.ReactNode,
+ *   imageSrc?: string
+ * }} props Propiedades del modal.
+ * @returns {JSX.Element|null} Estructura del modal o null si no está abierto.
+ */
 const Modal = ({ isOpen, onClose, title, children, imageSrc }) => {
   if (!isOpen) return null;
+
 
   return (
     <div className="advanced-modal-overlay" onClick={onClose}>

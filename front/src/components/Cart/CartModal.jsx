@@ -23,7 +23,7 @@ const CartModal = () => {
     }
   };
 
-  // Listen for cart updates
+  // Escuchar eventos globales de actualización del carrito ('cartUpdated')
   useEffect(() => {
     const handleCartUpdate = () => {
       if (isOpen) {
@@ -35,13 +35,12 @@ const CartModal = () => {
     return () => window.removeEventListener('cartUpdated', handleCartUpdate);
   }, [isOpen]);
 
+  /** Consulta la API para obtener el estado actual del carrito de compras */
   const loadCart = async () => {
     setLoading(true);
     try {
       const cartData = await getCart();
-      console.log('Cart data:', cartData); // Debug log
       const items = cartData.items || [];
-      console.log('Cart items:', items); // Debug log
       setCartItems(items);
       setCartCount(items.reduce((sum, item) => sum + item.quantity, 0));
     } catch (error) {
@@ -53,6 +52,11 @@ const CartModal = () => {
     }
   };
 
+  /**
+   * Elimina un producto del carrito por su ID de ítem.
+   * 
+   * @param {number|string} itemId ID del ítem a eliminar.
+   */
   const handleRemoveItem = async (itemId) => {
     try {
       await removeFromCart(itemId);
@@ -65,6 +69,12 @@ const CartModal = () => {
     }
   };
 
+  /**
+   * Actualiza la cantidad de unidades de un ítem en el carrito.
+   * 
+   * @param {number|string} itemId ID del ítem a actualizar.
+   * @param {number} newQuantity Nueva cantidad asignada.
+   */
   const handleUpdateQuantity = async (itemId, newQuantity) => {
     if (newQuantity < 1) return;
     
@@ -81,15 +91,18 @@ const CartModal = () => {
     }
   };
 
+  /** Incrementar en 1 la cantidad de un producto */
   const incrementQuantity = (itemId, currentQuantity) => {
     handleUpdateQuantity(itemId, currentQuantity + 1);
   };
 
+  /** Disminuir en 1 la cantidad de un producto (mínimo 1) */
   const decrementQuantity = (itemId, currentQuantity) => {
     if (currentQuantity > 1) {
       handleUpdateQuantity(itemId, currentQuantity - 1);
     }
   };
+
 
 
   return (

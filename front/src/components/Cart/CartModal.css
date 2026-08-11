@@ -1,3 +1,8 @@
+/* ==========================================================================
+   CartModal.css - Estilos del Panel Lateral Desplegable del Carrito
+   ========================================================================== */
+
+/* Fondo oscurecido con animaciones de opacidad */
 .cart-modal-overlay {
   position: fixed;
   top: 0;
@@ -16,6 +21,7 @@
   visibility: visible;
 }
 
+/* Panel lateral emergente deslizable desde la derecha */
 .cart-modal-content {
   position: absolute;
   top: 0;
@@ -34,6 +40,7 @@
   transform: translateX(0);
 }
 
+/* Encabezado del carrito */
 .cart-header {
   padding: 20px;
   border-bottom: 1px solid #eee;
@@ -42,6 +49,7 @@
   align-items: center;
   background: #f8f9fa;
 }
+
 
 .cart-header h3 {
   margin: 0;

@@ -40,11 +40,13 @@ function ModelFallback() {
 function Model3D({ url, scale = 1 }) {
   const { scene, loading, error } = useGLTF(url, true);
   
+  // Manejo de error al cargar el archivo .glb 3D
   if (error) {
     console.warn('3D Model failed to load:', error);
     return <ModelFallback />;
   }
   
+  // Spinner de carga dentro de la escena Canvas de Three.js
   if (loading) {
     return (
       <Html center>
@@ -57,12 +59,13 @@ function Model3D({ url, scale = 1 }) {
     );
   }
   
-  // Procesamiento mejorado de materiales para mayor claridad visual
+  // Recorrer los nodos del modelo 3D para optimizar sombras, rugosidad y brillo
   scene.traverse((child) => {
     if (child.isMesh) {
       if (child.material) {
         child.material.side = THREE.DoubleSide;
         
+        // Ajustar propiedades de respuesta a la luz en materiales estándar
         if (child.material.type === 'MeshStandardMaterial') {
           if (child.material.metalness !== undefined) {
             child.material.metalness = Math.min(child.material.metalness + 0.1, 1);
@@ -72,6 +75,7 @@ function Model3D({ url, scale = 1 }) {
           }
         }
         
+        // Aplicar emisión suave para evitar mallas excesivamente oscuras
         if (!child.material.emissive || child.material.emissive.getHex() === 0) {
           child.material.emissive = new THREE.Color(0x111111);
           child.material.emissiveIntensity = 0.2;
@@ -84,6 +88,7 @@ function Model3D({ url, scale = 1 }) {
   
   return <primitive object={scene} scale={scale} />;
 }
+
 
 /**
  * Componente de la Página de Detalle del Mueble (Details).

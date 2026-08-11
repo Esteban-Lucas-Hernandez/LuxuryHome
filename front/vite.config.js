@@ -1,7 +1,14 @@
+/**
+ * @file vite.config.js
+ * @description Configuración principal de Vite para el entorno de desarrollo y construcción.
+ * Incluye el plugin de React y reglas de proxy inverso para conectar peticiones de la API
+ * y recursos estáticos con el servidor backend de Django.
+ */
+
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// https://vite.dev/config/
+// Configuración exportada de Vite (https://vite.dev/config/)
 export default defineConfig({
   plugins: [react()],
   server: {
