@@ -13,6 +13,7 @@ import './About.css';
 export default function About() {
   const navigate = useNavigate();
 
+  /** Integrantes del equipo directivo, ingenieros y artesanos */
   const teamMembers = [
     {
       name: "Carlos Rodríguez",
@@ -40,6 +41,7 @@ export default function About() {
     }
   ];
 
+  /** Hitos históricos en la trayectoria de la empresa */
   const milestones = [
     {
       year: "2015",
@@ -63,6 +65,7 @@ export default function About() {
     }
   ];
 
+  /** Principios éticos y pilares fundamentales de la marca */
   const values = [
     {
       icon: "fas fa-gem",
@@ -85,6 +88,7 @@ export default function About() {
       description: "Ofrecemos respaldo extendido y control de calidad riguroso en cada etapa de fabricación."
     }
   ];
+
 
   return (
     <div className="about-luxury-page">

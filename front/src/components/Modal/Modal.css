@@ -1,3 +1,8 @@
+/* ==========================================================================
+   Modal.css - Estilos Base para Ventanas Modales Emergentes
+   ========================================================================== */
+
+/* Fondo oscuro semitransparente (overlay) */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -11,6 +16,7 @@
   z-index: 1050;
 }
 
+/* Caja principal del modal */
 .modal-content {
   background: white;
   border-radius: 8px;
@@ -21,6 +27,7 @@
   overflow-y: auto;
 }
 
+/* Encabezado con título */
 .modal-header {
   display: flex;
   justify-content: space-between;
@@ -35,10 +42,12 @@
   font-weight: 500;
 }
 
+/* Cuerpo interno del modal */
 .modal-body {
   padding: 1.5rem;
 }
 
+/* Botón de cierre */
 .btn-close {
   background: none;
   border: none;
@@ -49,4 +58,4 @@
 
 .btn-close:hover {
   color: #000;
-}
+}

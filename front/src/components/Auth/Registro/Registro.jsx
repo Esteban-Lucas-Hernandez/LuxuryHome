@@ -20,7 +20,7 @@ const BrandLogo = () => (
  * @returns {JSX.Element} Modal de registro.
  */
 const Registro = ({ isOpen, onClose, onOpenLogin }) => {
-  // estado: datos del formulario, carga, manejo de errores
+  // Estados locales del formulario de registro y control de errores
   const [formData, setFormData] = useState({
     username: '',
     email: '',
@@ -30,11 +30,11 @@ const Registro = ({ isOpen, onClose, onOpenLogin }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   
-    // ganchos de autenticación y navegación
+  // Hooks de autenticación y navegación
   const { register } = useAuth();
   const navigate = useNavigate();
 
-    // función para manejar cambios en los campos del formulario
+  /** Actualiza el estado local al escribir en los campos de texto */
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -42,33 +42,29 @@ const Registro = ({ isOpen, onClose, onOpenLogin }) => {
     });
   };
 
-    // función para manejar el envío del formulario
+  /** Valida las contraseñas y procesa la creación de cuenta en el backend */
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError(null);
     
-        // validar que las contraseñas coincidan
+    // Verificar que las dos contraseñas ingresadas sean idénticas
     if (formData.password !== formData.password2) {
       setError({ detail: 'Passwords do not match' });
       setLoading(false);
       return;
     }
     
-        // preparar datos para la api (excluyendo password2)
+    // Omitir 'password2' al enviar el payload a la API
     const { password2, ...registerData } = formData;
     
-        // intentar registrar al usuario
     try {
       const result = await register(registerData);
       
-      // si el registro es exitoso
       if (result.success) {
-        // En lugar de redirigir, mostramos un mensaje y abrimos el modal de login
-        onClose(); // cierra el modal después de un registro exitoso
-        onOpenLogin(); // abre automáticamente el modal de inicio de sesión
+        onClose(); // Cierra el modal de registro
+        onOpenLogin(); // Abre automáticamente el modal de inicio de sesión
       } else {
-        // si hay un error en el registro
         setError(result.error);
       }
     } catch (err) {
@@ -78,11 +74,12 @@ const Registro = ({ isOpen, onClose, onOpenLogin }) => {
     }
   };
 
-    // función para cambiar al modal de login
+  /** Cierra el modal de registro y abre la ventana de inicio de sesión */
   const handleLoginClick = () => {
-    onClose(); // cierra el modal de registro
-    onOpenLogin(); // abre el modal de inicio de sesión
+    onClose();
+    onOpenLogin();
   };
+
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} title={<BrandLogo />} imageSrc="/auth-bg.png">

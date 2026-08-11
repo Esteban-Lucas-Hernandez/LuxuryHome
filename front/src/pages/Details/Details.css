@@ -1,9 +1,15 @@
+/* ==========================================================================
+   Details.css - Estilos de la Página de Detalle de Producto y Visor 3D
+   ========================================================================== */
+
+/* Contenedor principal de la página de detalles */
 .details-container {
   padding: 2rem 0;
   background-color: #ffffff;
   min-height: calc(100vh - 80px);
 }
 
+/* Sección izquierda: Visor 2D / 3D Canvas */
 .visualization-section {
   background: white;
   border-radius: 12px;
@@ -11,9 +17,11 @@
   overflow: hidden;
 }
 
+/* Pestañas de alternancia (2D vs 3D) */
 .nav-tabs {
   border-bottom: 1px solid #dee2e6;
 }
+
 
 .nav-tabs .nav-link {
   border: none;

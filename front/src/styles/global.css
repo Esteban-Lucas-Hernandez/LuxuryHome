@@ -1,6 +1,11 @@
+/* ==========================================================================
+   Global.css - Estilos Base y Tipografía General
+   ========================================================================== */
+
+/* Importación de tipografía de marca Montserrat desde Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
 
-/* Global styles */
+/* Reset y estilos generales del cuerpo del documento */
 body {
   font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   color: #1a1a1a;
@@ -9,6 +14,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Reglas tipográficas para jerarquía de encabezados (H1 - H6) */
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
@@ -23,6 +29,7 @@ h1 {
   font-weight: 800;
 }
 
+/* Estilos globales para botones */
 button, .btn {
   font-family: 'Montserrat', sans-serif;
   text-transform: uppercase;
@@ -30,6 +37,8 @@ button, .btn {
   font-weight: 600;
 }
 
+/* Contenedor principal de vistas */
 .main-content {
   margin-top: 50px;
 }
+

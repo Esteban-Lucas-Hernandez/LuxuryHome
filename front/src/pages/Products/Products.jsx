@@ -27,7 +27,12 @@ function Products() {
     categories
   } = useFurnitureCatalog();
 
-  /** Agrega el producto seleccionado al carrito y notifica la actualización */
+  /**
+   * Agrega una unidad del mueble especificado al carrito de compras.
+   * Verifica la disponibilidad de inventario y dispara el evento 'cartUpdated'.
+   * 
+   * @param {object} product Objeto con las propiedades del producto.
+   */
   const handleAddToCart = async (product) => {
     if (product.stock <= 0) {
       alert('Producto sin stock disponible');
@@ -37,13 +42,14 @@ function Products() {
     try {
       await addToCart(product.id, 1);
       alert(`${product.name} añadido al carrito!`);
-      // Dispatch a custom event to notify cart updates
+      // Disparar evento personalizado para actualizar inmediatamente el carrito modal
       window.dispatchEvent(new CustomEvent('cartUpdated'));
     } catch (error) {
       console.error('Error adding to cart:', error);
       alert('Error al agregar al carrito');
     }
   };
+
 
   if (loading) {
     return (

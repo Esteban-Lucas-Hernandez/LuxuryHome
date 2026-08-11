@@ -12,8 +12,11 @@ import './Home.css';
  */
 export default function Home() {
   const navigate = useNavigate();
+  
+  // Estado para el control de diapositiva activa en el Hero Slider
   const [currentSlide, setCurrentSlide] = useState(0);
 
+  /** Configuración de diapositivas del carrusel principal Hero */
   const heroSlides = [
     {
       image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1920&h=1080&fit=crop",
@@ -41,6 +44,7 @@ export default function Home() {
     }
   ];
 
+  /** Muestrario de ambientes y colecciones destacadas */
   const collections = [
     {
       id: "salas",
@@ -68,6 +72,7 @@ export default function Home() {
     }
   ];
 
+  /** Reseñas y testimonios de clientes VIP */
   const testimonials = [
     {
       quote: "La posibilidad de inspeccionar cada mueble en 3D antes de comprarlo transformó por completo nuestra remodelación. La precisión y calidad son insuperables.",
@@ -83,12 +88,14 @@ export default function Home() {
     }
   ];
 
+  // Temporizador para cambio automático de diapositivas cada 6 segundos
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
     }, 6000);
     return () => clearInterval(interval);
   }, [heroSlides.length]);
+
 
   return (
     <div className="home-advanced-page">
