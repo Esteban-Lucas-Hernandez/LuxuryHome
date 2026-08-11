@@ -2,18 +2,43 @@ import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import api from '../../api/axios';
 
+/**
+ * Hook personalizado para la gestión y filtrado del catálogo de muebles.
+ * Administra el estado de la lista de productos, categorías disponibles,
+ * búsqueda por texto, ordenamiento, filtrado por stock y sincronización bidireccional con la URL.
+ * 
+ * @returns {{
+ *   furniture: Array<object>,
+ *   loading: boolean,
+ *   error: string|null,
+ *   selectedCategory: string,
+ *   setSelectedCategory: function(string): void,
+ *   searchQuery: string,
+ *   setSearchQuery: function(string): void,
+ *   sortBy: string,
+ *   setSortBy: function(string): void,
+ *   stockFilter: string,
+ *   setStockFilter: function(string): void,
+ *   categories: Array<object>,
+ *   clearFilters: function(): void
+ * }} Estado del catálogo y métodos de control de filtros.
+ */
 export function useFurnitureCatalog() {
   const [searchParams, setSearchParams] = useSearchParams();
+  
+  // Estados principales del catálogo
   const [furniture, setFurniture] = useState([]);
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  
+  // Estados de filtros activados desde la URL o la interfaz de usuario
   const [selectedCategory, setSelectedCategory] = useState(searchParams.get('category') || '');
   const [searchQuery, setSearchQuery] = useState(searchParams.get('search') || '');
   const [sortBy, setSortBy] = useState('-created_at');
   const [stockFilter, setStockFilter] = useState('');
 
-  // Fetch categories once
+  // Carga inicial de la lista completa de categorías desde el backend
   useEffect(() => {
     const fetchCategories = async () => {
       try {
@@ -31,7 +56,7 @@ export function useFurnitureCatalog() {
     fetchCategories();
   }, []);
 
-  // Sync state from URL when URL changes externally (e.g. clicking navbar links while already on /products)
+  // Sincronizar el estado de la categoría cuando la URL cambie externamente
   useEffect(() => {
     const categoryFromUrl = searchParams.get('category') || '';
     if (categoryFromUrl !== selectedCategory) {
@@ -39,7 +64,7 @@ export function useFurnitureCatalog() {
     }
   }, [searchParams.get('category')]);
 
-  // Sync state to URL
+  // Actualizar los parámetros de la URL cuando cambien los filtros locales
   useEffect(() => {
     const params = new URLSearchParams();
     if (selectedCategory) params.set('category', selectedCategory);
@@ -47,7 +72,7 @@ export function useFurnitureCatalog() {
     setSearchParams(params, { replace: true });
   }, [selectedCategory, searchQuery, setSearchParams]);
 
-  // Fetch furniture data
+  // Obtener la lista filtrada de muebles desde la API según los parámetros seleccionados
   useEffect(() => {
     const fetchFurniture = async () => {
       try {
@@ -66,8 +91,7 @@ export function useFurnitureCatalog() {
           ? response.data
           : response.data?.results ?? [];
 
-        // Usar ruta relativa (/static/...) para que el proxy de Vite la intercepte.
-        // Si se usa URL absoluta (http://localhost:8000/...) el browser bypasea el proxy → CORS error.
+        // Mapear rutas de imagen y modelo 3D utilizando URLs absolutas/relativas procesadas
         const furnitureWithProcessedUrls = items.map(item => ({
           ...item,
           image: item.image_url ?? null,
@@ -87,6 +111,7 @@ export function useFurnitureCatalog() {
     fetchFurniture();
   }, [selectedCategory, searchQuery, stockFilter, sortBy]);
 
+  /** Restablece todos los filtros de búsqueda a su estado inicial por defecto */
   const clearFilters = () => {
     setSelectedCategory('');
     setSearchQuery('');
@@ -110,4 +135,4 @@ export function useFurnitureCatalog() {
     categories,
     clearFilters
   };
-}
+}

@@ -5,19 +5,31 @@ import CartModal from '../Cart/CartModal.jsx';
 import api from '../../api/axios.js';
 import './Navbar.css';
 
+/**
+ * Componente Barra de Navegación (Navbar).
+ * Incluye el logo de la marca, enlaces de navegación global, mega menú desplegable
+ * interactivo con categorías y subcategorías paginadas, acceso al modal de carrito
+ * y acciones de autenticación (Login/Registro/Logout).
+ * 
+ * @param {{ openLoginModal: function(): void, openRegisterModal: function(): void }} props
+ * @returns {JSX.Element} Barra de navegación fija con mega menú.
+ */
 function Navbar({ openLoginModal, openRegisterModal }) {
+  // Estados para el efecto de scroll y datos de categorías/muebles del mega menú
   const [scrolled, setScrolled] = useState(false);
   const [categories, setCategories] = useState([]);
   const [furniture, setFurniture] = useState([]);
   const [activeCategoryId, setActiveCategoryId] = useState(null);
   const [currentSubcatPage, setCurrentSubcatPage] = useState(0);
   const [forceCloseMegaMenu, setForceCloseMegaMenu] = useState(false);
+
+  // Hooks de enrutamiento y autenticación
   const location = useLocation();
   const { isAuthenticated, logout } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Fetch categories and furniture from backend
+    // Cargar categorías y muebles desde el backend para renderizar el mega menú
     const fetchData = async () => {
       try {
         const [catsRes, furnRes] = await Promise.all([
@@ -48,6 +60,7 @@ function Navbar({ openLoginModal, openRegisterModal }) {
     };
     fetchData();
 
+    // Detectar el desplazamiento vertical para alterar la sombra/padding del navbar
     const handleScroll = () => {
       const isScrolled = window.scrollY > 10;
       setScrolled(isScrolled);
@@ -57,7 +70,9 @@ function Navbar({ openLoginModal, openRegisterModal }) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  /** Verifica si una ruta coincide con la ubicación actual para resaltar el enlace activo */
   const isActive = (path) => location.pathname === path;
+
 
   return (
     <>

@@ -20,7 +20,7 @@ const BrandLogo = () => (
  * @returns {JSX.Element} Modal de inicio de sesión.
  */
 const Login = ({ isOpen, onClose, onOpenRegister }) => {
-  // estado: datos del formulario, carga, manejo de errores
+  // Estados locales: credenciales de formulario, estado de envío y mensajes de error
   const [formData, setFormData] = useState({
     username: '',
     password: '',
@@ -28,11 +28,11 @@ const Login = ({ isOpen, onClose, onOpenRegister }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   
-    // autenticación y enrutamiento
+  // Hooks de autenticación global y navegación de rutas
   const { login } = useAuth();
   const navigate = useNavigate();
 
-    // función para manejar cambios en los campos del formulario
+  /** Actualiza los valores del formulario según la entrada del usuario */
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -40,22 +40,19 @@ const Login = ({ isOpen, onClose, onOpenRegister }) => {
     });
   };
 
-    // función para manejar el envío del formulario
+  /** Procesa el envío del formulario de inicio de sesión y autentica contra la API */
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError(null);
     
-        // intentar iniciar sesión
     try {
       const result = await login(formData);
       
-            // si el inicio de sesión es exitoso
       if (result.success) {
-        onClose(); // cierra el modal después de un inicio de sesión exitoso
-        navigate('/'); // redirige a la página de inicio después de un inicio de sesión exitoso
+        onClose(); // Cierra el modal al autenticarse correctamente
+        navigate('/'); // Redirige a la página principal
       } else {
-        // si hay un error en el inicio de sesión
         setError(result.error);
       }
     } catch (err) {
@@ -65,11 +62,12 @@ const Login = ({ isOpen, onClose, onOpenRegister }) => {
     }
   };
 
-    // función para cambiar al modal de registro
+  /** Cierra el modal de inicio de sesión y abre la ventana de registro de usuarios */
   const handleRegisterClick = () => {
-    onClose(); // cierra el modal de inicio de sesión
-    onOpenRegister(); // abre el modal de registro
+    onClose();
+    onOpenRegister();
   };
+
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} title={<BrandLogo />} imageSrc="/auth-bg.png">
