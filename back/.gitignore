@@ -5,9 +5,12 @@ venv/
 __pycache__/
 *.pyc
 
-# Base de datos local
+# Archivos de la base de datos y entorno
 db.sqlite3
-
-# Variables de entorno
 .env
+
+# Archivos estáticos recopilados (STATIC_ROOT) y archivos multimedia subidos por usuarios
+staticfiles/
+media/
+
 
