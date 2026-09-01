@@ -35,7 +35,7 @@ export const authService = {
   refreshToken: async (refreshToken) => {
     try {
       // Petición POST al endpoint de refresh para mantener la sesión activa
-      const response = await api.post('/users/token/refresh/', {
+      const response = await api.post('/users/refresh/', {
         refresh: refreshToken,
       });
       return response.data;
@@ -43,4 +43,25 @@ export const authService = {
       throw error.response?.data || error;
     }
   },
+
+  // Get current authenticated user profile
+  getCurrentUser: async () => {
+    try {
+      const response = await api.get('/users/me/');
+      return response.data;
+    } catch (error) {
+      throw error.response?.data || error;
+    }
+  },
+
+  // Get all registered users for admin dashboard
+  getAdminUsers: async () => {
+    try {
+      const response = await api.get('/users/admin-users/');
+      return response.data;
+    } catch (error) {
+      throw error.response?.data || error;
+    }
+  },
 };
+

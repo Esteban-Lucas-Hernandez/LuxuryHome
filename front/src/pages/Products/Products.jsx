@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useFurnitureCatalog } from '../../api/hooks/useFurnitureCatalog';
-import { addToCart } from '../../api/cart';
+import { useCart } from '../../context/CartContext';
+import Swal from 'sweetalert2';
 import './Products.css';
 
 /**
@@ -26,29 +27,27 @@ function Products() {
     setStockFilter,
     categories
   } = useFurnitureCatalog();
+  const { addToCart } = useCart();
 
   /**
    * Agrega una unidad del mueble especificado al carrito de compras.
-   * Verifica la disponibilidad de inventario y dispara el evento 'cartUpdated'.
    * 
    * @param {object} product Objeto con las propiedades del producto.
    */
   const handleAddToCart = async (product) => {
     if (product.stock <= 0) {
-      alert('Producto sin stock disponible');
+      Swal.fire({
+        icon: 'warning',
+        title: 'Sin Stock',
+        text: 'Este producto se encuentra actualmente agotado.',
+        confirmButtonColor: '#c5a059'
+      });
       return;
     }
     
-    try {
-      await addToCart(product.id, 1);
-      alert(`${product.name} añadido al carrito!`);
-      // Disparar evento personalizado para actualizar inmediatamente el carrito modal
-      window.dispatchEvent(new CustomEvent('cartUpdated'));
-    } catch (error) {
-      console.error('Error adding to cart:', error);
-      alert('Error al agregar al carrito');
-    }
+    await addToCart(product.id, 1, product.name);
   };
+
 
 
   if (loading) {

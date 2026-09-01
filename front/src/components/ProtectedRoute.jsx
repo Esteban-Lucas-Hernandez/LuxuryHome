@@ -14,14 +14,21 @@ import { useAuth } from '../context/AuthContext.jsx';
 const ProtectedRoute = ({ children }) => {
   const { isAuthenticated, loading } = useAuth();
 
-  // Mostrar mensaje de espera mientras se verifica el token JWT en localStorage
+  // Mostrar indicador de carga mientras se valida la sesión
   if (loading) {
-    return <div className="container mt-5 text-center">Loading...</div>;
+    return (
+      <div className="container py-5 text-center">
+        <div className="spinner-border text-gold" role="status">
+          <span className="visually-hidden">Validando sesión...</span>
+        </div>
+      </div>
+    );
   }
 
-  // Renderizar componentes protegidos si la sesión es válida; de lo contrario redirigir
-  return isAuthenticated ? children : <Navigate to="/login" replace />;
+  // Renderizar componentes protegidos si la sesión es válida; de lo contrario redirigir al inicio
+  return isAuthenticated ? children : <Navigate to="/" replace />;
 };
 
 export default ProtectedRoute;
+
 

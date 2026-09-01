@@ -1,0 +1,70 @@
+/* ==========================================================================
+   Checkout.css - Estilos de la Pantalla de Finalización de Compra
+   ========================================================================== */
+
+.checkout-page {
+  min-height: 80vh;
+  background-color: #fcfcfc;
+}
+
+.checkout-step-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: #1a1a1a;
+  color: #c5a059;
+  font-size: 0.85rem;
+  border-radius: 50%;
+  font-weight: 700;
+}
+
+.checkout-card {
+  border-radius: 16px;
+  border: 1px solid #ededed;
+  background: #ffffff;
+}
+
+.payment-methods-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.payment-method-card {
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: #ffffff;
+  display: block;
+}
+
+.payment-method-card:hover {
+  border-color: #c5a059;
+  background: #faf8f3;
+}
+
+.payment-method-card.active {
+  border-color: #c5a059;
+  background: #faf6ee;
+  box-shadow: 0 0 0 1px #c5a059;
+}
+
+.checkout-summary-card {
+  border-radius: 16px;
+  border: 1px solid #e5e5e5;
+  background: #ffffff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.order-items-preview {
+  max-height: 260px;
+  overflow-y: auto;
+}
+
+.bg-light-soft {
+  background-color: #f7f7f8;
+}

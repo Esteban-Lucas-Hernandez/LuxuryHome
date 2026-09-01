@@ -35,15 +35,31 @@ export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
 
+  // Cargar usuario autenticado
+  const loadUser = async () => {
+    try {
+      const userData = await authService.getCurrentUser();
+      setUser(userData);
+      setIsAuthenticated(true);
+    } catch (err) {
+      console.error('Error loading user profile:', err);
+      setUser(null);
+      setIsAuthenticated(false);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   // Verificar la presencia de tokens JWT al cargar la aplicación
   useEffect(() => {
     const token = localStorage.getItem('access_token');
     const refreshToken = localStorage.getItem('refresh_token');
     
     if (token && refreshToken) {
-      setIsAuthenticated(true);
+      loadUser();
+    } else {
+      setLoading(false);
     }
-    setLoading(false);
   }, []);
 
   /**
@@ -59,7 +75,7 @@ export const AuthProvider = ({ children }) => {
       localStorage.setItem('refresh_token', response.refresh);
       
       setIsAuthenticated(true);
-      setUser(null);
+      await loadUser();
       
       return { success: true, data: response };
     } catch (error) {
@@ -81,7 +97,7 @@ export const AuthProvider = ({ children }) => {
         localStorage.setItem('refresh_token', response.refresh);
         
         setIsAuthenticated(true);
-        setUser(null);
+        await loadUser();
       }
       
       return { success: true, data: response };

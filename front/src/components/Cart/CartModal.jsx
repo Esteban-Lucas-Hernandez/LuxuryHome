@@ -1,191 +1,175 @@
-import { useState, useEffect } from 'react';
-import { getCart, removeFromCart, updateCartItem } from '../../api/cart';
+import { useNavigate } from 'react-router-dom';
+import { useCart } from '../../context/CartContext';
 import './CartModal.css';
 
 /**
- * Componente Modal de Carrito de Compras (CartModal).
- * Despliega el panel lateral del carrito, escucha eventos de actualización global ('cartUpdated'),
- * permite modificar cantidades o remover productos y calcula los totales.
+ * Componente Modal Lateral de Carrito de Compras (CartModal).
+ * Conectado globalmente mediante CartContext. Permite visualizar ítems con miniatura,
+ * modificar cantidades, eliminar productos y navegar al flujo de Checkout.
  * 
- * @returns {JSX.Element} Botón e interfaz del modal del carrito.
+ * @returns {JSX.Element} Panel lateral del carrito.
  */
 const CartModal = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [cartItems, setCartItems] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [cartCount, setCartCount] = useState(0);
+  const navigate = useNavigate();
+  const {
+    cartItems,
+    cartTotal,
+    cartCount,
+    loading,
+    isCartOpen,
+    closeCart,
+    removeFromCart,
+    updateQuantity
+  } = useCart();
 
-  /** Abre o cierra la visibilidad del modal e inicia la carga de datos */
-  const toggleCart = () => {
-    setIsOpen(!isOpen);
-    if (!isOpen) {
-      loadCart();
-    }
+  /** Navega a la vista de Checkout y cierra el panel lateral */
+  const handleProceedToCheckout = () => {
+    closeCart();
+    navigate('/checkout');
   };
 
-  // Escuchar eventos globales de actualización del carrito ('cartUpdated')
-  useEffect(() => {
-    const handleCartUpdate = () => {
-      if (isOpen) {
-        loadCart();
-      }
-    };
-
-    window.addEventListener('cartUpdated', handleCartUpdate);
-    return () => window.removeEventListener('cartUpdated', handleCartUpdate);
-  }, [isOpen]);
-
-  /** Consulta la API para obtener el estado actual del carrito de compras */
-  const loadCart = async () => {
-    setLoading(true);
-    try {
-      const cartData = await getCart();
-      const items = cartData.items || [];
-      setCartItems(items);
-      setCartCount(items.reduce((sum, item) => sum + item.quantity, 0));
-    } catch (error) {
-      console.error('Error loading cart:', error);
-      setCartItems([]);
-      setCartCount(0);
-    } finally {
-      setLoading(false);
-    }
+  /** Navega al catálogo */
+  const handleContinueShopping = () => {
+    closeCart();
+    navigate('/products');
   };
-
-  /**
-   * Elimina un producto del carrito por su ID de ítem.
-   * 
-   * @param {number|string} itemId ID del ítem a eliminar.
-   */
-  const handleRemoveItem = async (itemId) => {
-    try {
-      await removeFromCart(itemId);
-      const updatedItems = cartItems.filter(item => item.id !== itemId);
-      setCartItems(updatedItems);
-      setCartCount(updatedItems.reduce((sum, item) => sum + item.quantity, 0));
-    } catch (error) {
-      console.error('Error removing item:', error);
-      alert('Error al eliminar producto');
-    }
-  };
-
-  /**
-   * Actualiza la cantidad de unidades de un ítem en el carrito.
-   * 
-   * @param {number|string} itemId ID del ítem a actualizar.
-   * @param {number} newQuantity Nueva cantidad asignada.
-   */
-  const handleUpdateQuantity = async (itemId, newQuantity) => {
-    if (newQuantity < 1) return;
-    
-    try {
-      await updateCartItem(itemId, newQuantity);
-      const updatedItems = cartItems.map(item => 
-        item.id === itemId ? { ...item, quantity: newQuantity } : item
-      );
-      setCartItems(updatedItems);
-      setCartCount(updatedItems.reduce((sum, item) => sum + item.quantity, 0));
-    } catch (error) {
-      console.error('Error updating quantity:', error);
-      alert('Error al actualizar cantidad');
-    }
-  };
-
-  /** Incrementar en 1 la cantidad de un producto */
-  const incrementQuantity = (itemId, currentQuantity) => {
-    handleUpdateQuantity(itemId, currentQuantity + 1);
-  };
-
-  /** Disminuir en 1 la cantidad de un producto (mínimo 1) */
-  const decrementQuantity = (itemId, currentQuantity) => {
-    if (currentQuantity > 1) {
-      handleUpdateQuantity(itemId, currentQuantity - 1);
-    }
-  };
-
-
 
   return (
-    <>
-      <button className="btn btn-shopping-cart" onClick={toggleCart}>
-        <i className="fas fa-shopping-cart"></i>
-        <span className="cart-badge">{cartCount}</span>
-      </button>
-
-      <div className={`cart-modal-overlay ${isOpen ? 'open' : ''}`} onClick={toggleCart}>
-        <div className="cart-modal-content" onClick={(e) => e.stopPropagation()}>
-          <div className="cart-header">
-            <h3>Tu Carrito</h3>
-            <button className="close-btn" onClick={toggleCart}>
-              <i className="fas fa-times"></i>
-            </button>
+    <div className={`cart-modal-overlay ${isCartOpen ? 'open' : ''}`} onClick={closeCart}>
+      <div className="cart-modal-content" onClick={(e) => e.stopPropagation()}>
+        {/* Encabezado */}
+        <div className="cart-header">
+          <div className="d-flex align-items-center gap-2">
+            <i className="fas fa-shopping-bag text-gold"></i>
+            <h3 className="cart-title mb-0">Tu Carrito ({cartCount})</h3>
           </div>
-          <div className="cart-body">
-            {loading ? (
-              <div className="text-center py-4">
-                <div className="spinner-border text-primary" role="status">
-                  <span className="visually-hidden">Cargando...</span>
-                </div>
+          <button className="close-btn" onClick={closeCart} aria-label="Cerrar carrito">
+            <i className="fas fa-times"></i>
+          </button>
+        </div>
+
+        {/* Cuerpo del Carrito */}
+        <div className="cart-body">
+          {loading ? (
+            <div className="text-center py-5">
+              <div className="spinner-border text-gold" role="status">
+                <span className="visually-hidden">Cargando...</span>
               </div>
-            ) : cartItems.length > 0 ? (
-              <>
-                {cartItems.map(item => {
-                  console.log('Individual item:', item); // Debug log
-                  const productName = item.product_name || item.name || item.product?.name || 'Producto desconocido';
-                  const price = parseFloat(item.price || item.product?.price || 0);
-                  const quantity = item.quantity || 1;
-                  
-                  return (
-                    <div key={item.id} className="cart-item">
-                      <div className="item-info">
-                        <h5>{productName}</h5>
-                        <p className="item-price">${price.toLocaleString('es-CO')}</p>
-                      </div>
-                      <div className="item-actions">
-                        <div className="quantity-controls">
-                          <button 
-                            className="btn btn-outline-secondary btn-sm qty-btn"
-                            onClick={() => decrementQuantity(item.id, quantity)}
+              <p className="mt-3 text-muted small">Actualizando carrito...</p>
+            </div>
+          ) : cartItems.length > 0 ? (
+            <div className="cart-items-list">
+              {cartItems.map((item) => {
+                const product = item.product || {};
+                const productName = item.product_name || product.name || 'Mueble Exclusivo';
+                const price = parseFloat(item.price || product.price || 0);
+                const quantity = item.quantity || 1;
+                const imageUrl = product.image_url || '/placeholder.png';
+
+                return (
+                  <div key={item.id} className="cart-item-card">
+                    <div className="cart-item-img-wrapper">
+                      <img
+                        src={imageUrl}
+                        alt={productName}
+                        onError={(e) => {
+                          e.target.src = 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=200&h=200&fit=crop';
+                        }}
+                      />
+                    </div>
+                    <div className="cart-item-details">
+                      <h5 className="cart-item-name">{productName}</h5>
+                      <span className="cart-item-unit-price">${price.toLocaleString('es-CO')} c/u</span>
+
+                      <div className="cart-item-footer">
+                        <div className="qty-pill-group">
+                          <button
+                            type="button"
+                            className="qty-btn"
                             disabled={quantity <= 1}
+                            onClick={() => updateQuantity(item.id, quantity - 1)}
+                            aria-label="Reducir cantidad"
                           >
                             <i className="fas fa-minus"></i>
                           </button>
-                          <span className="quantity-display">{quantity}</span>
-                          <button 
-                            className="btn btn-outline-secondary btn-sm qty-btn"
-                            onClick={() => incrementQuantity(item.id, quantity)}
+                          <span className="qty-number">{quantity}</span>
+                          <button
+                            type="button"
+                            className="qty-btn"
+                            onClick={() => updateQuantity(item.id, quantity + 1)}
+                            aria-label="Aumentar cantidad"
                           >
                             <i className="fas fa-plus"></i>
                           </button>
                         </div>
-                        <button 
-                          className="btn btn-danger btn-sm remove-btn"
-                          onClick={() => handleRemoveItem(item.id)}
+
+                        <button
+                          type="button"
+                          className="cart-remove-btn"
+                          onClick={() => removeFromCart(item.id, productName)}
+                          title="Eliminar producto"
                         >
-                          <i className="fas fa-trash"></i>
+                          <i className="fas fa-trash-can"></i>
                         </button>
                       </div>
                     </div>
-                  );
-                })}
-                <div className="cart-total mt-3 pt-3 border-top">
-                  <div className="d-flex justify-content-between">
-                    <strong>Total:</strong>
-                    <strong>${cartItems.reduce((sum, item) => {
-                      const price = parseFloat(item.price || item.product?.price || 0);
-                      const quantity = item.quantity || 1;
-                      return sum + (price * quantity);
-                    }, 0).toLocaleString('es-CO')}</strong>
                   </div>
-                </div>
-              </>
-            ) : (
-              <p className="empty-cart">Tu carrito está vacío</p>
-            )}
-          </div>
+                );
+              })}
+            </div>
+          ) : (
+            <div className="empty-cart-state text-center py-5">
+              <div className="empty-cart-icon mb-3">
+                <i className="fas fa-couch fa-3x text-muted"></i>
+              </div>
+              <h4 className="fw-bold mb-2">Tu carrito está vacío</h4>
+              <p className="text-muted small mb-4">
+                Explora nuestro catálogo 3D y descubre piezas únicas para transformar tu espacio.
+              </p>
+              <button className="btn btn-gold-solid px-4 py-2" onClick={handleContinueShopping}>
+                Explorar Catálogo
+              </button>
+            </div>
+          )}
         </div>
+
+        {/* Pie del Carrito con Totales y Checkout */}
+        {cartItems.length > 0 && (
+          <div className="cart-footer">
+            <div className="cart-summary-row mb-2">
+              <span className="text-muted">Subtotal:</span>
+              <span className="fw-semibold">${cartTotal.toLocaleString('es-CO')}</span>
+            </div>
+            <div className="cart-summary-row mb-3">
+              <span className="text-muted">Envío & Seguro VIP:</span>
+              <span className="text-success fw-semibold">Gratis</span>
+            </div>
+            <div className="cart-total-row pt-2 border-top mb-4">
+              <span className="h6 fw-bold mb-0">Total Estimado:</span>
+              <span className="h5 fw-bold text-gold mb-0">${cartTotal.toLocaleString('es-CO')}</span>
+            </div>
+
+            <div className="cart-actions-group d-flex flex-column gap-2">
+              <button
+                type="button"
+                className="btn btn-gold-solid w-100 py-3 fw-bold"
+                onClick={handleProceedToCheckout}
+              >
+                <i className="fas fa-lock me-2"></i>
+                Proceder al Pago
+              </button>
+              <button
+                type="button"
+                className="btn btn-outline-dark w-100 py-2 small"
+                onClick={handleContinueShopping}
+              >
+                Seguir Comprando
+              </button>
+            </div>
+          </div>
+        )}
       </div>
-    </>
+    </div>
   );
 };
 

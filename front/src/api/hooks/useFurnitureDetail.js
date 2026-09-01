@@ -4,6 +4,7 @@ import api from '../../api/axios';
 
 /**
  * Hook personalizado para cargar los detalles individuales de un mueble por su ID.
+ * 
  * Maneja el estado de carga, errores, navegación y vista previa 3D.
  * 
  * @returns {{
