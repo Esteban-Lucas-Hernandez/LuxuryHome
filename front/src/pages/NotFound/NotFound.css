@@ -1,0 +1,13 @@
+/* ==========================================================================
+   NotFound.css - Página 404
+   ========================================================================== */
+
+.notfound-page {
+  min-height: 75vh;
+  background-color: #fbfbfb;
+}
+
+.notfound-code {
+  letter-spacing: 4px;
+  font-family: 'Montserrat', sans-serif;
+}

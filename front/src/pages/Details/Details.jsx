@@ -5,7 +5,7 @@ import { Canvas, extend } from '@react-three/fiber';
 import { OrbitControls, useGLTF, Html, Environment, ContactShadows } from '@react-three/drei';
 import * as THREE from 'three';
 import { useFurnitureDetail } from '../../api/hooks/useFurnitureDetail';
-import { addToCart } from '../../api/cart';
+import { useCart } from '../../context/CartContext';
 import './Details.css';
 
 /**
@@ -100,6 +100,7 @@ function Model3D({ url, scale = 1 }) {
 const Details = () => {
   const navigate = useNavigate();
   const { furniture, loading, error, show3D, toggleView } = useFurnitureDetail();
+  const { addToCart } = useCart();
 
   /** Muestra aviso e inicia el renderizado 3D */
   const handleToggle3DView = () => {
@@ -107,7 +108,10 @@ const Details = () => {
       title: '¡Atención!',
       text: 'Tenga paciencia mientras carga la imagen 3D para la demo.',
       icon: 'info',
-      confirmButtonText: 'Entendido'
+      confirmButtonText: 'Entendido',
+      confirmButtonColor: '#c5a059',
+      background: '#1a1a1a',
+      color: '#ffffff'
     }).then(() => {
       toggleView(true);
     });
@@ -116,27 +120,32 @@ const Details = () => {
   /** Agrega el producto actual al carrito de compras */
   const handleAddToCart = async () => {
     if (furniture.stock <= 0) {
-      alert('Producto sin stock disponible');
+      Swal.fire({
+        icon: 'warning',
+        title: 'Agotado',
+        text: 'Este producto no cuenta con stock disponible en este momento.',
+        confirmButtonColor: '#c5a059'
+      });
       return;
     }
-    try {
-      await addToCart(furniture.id, 1);
-      alert(`¡${furniture.name} añadido al carrito!`);
-      window.dispatchEvent(new CustomEvent('cartUpdated'));
-    } catch (err) {
-      console.error('Error al agregar al carrito:', err);
-      alert('Error al agregar al carrito');
-    }
+    await addToCart(furniture.id, 1, furniture.name);
   };
 
   /** Inicia el flujo directo de compra */
   const handleBuyNow = async () => {
     if (furniture.stock <= 0) {
-      alert('Producto sin stock disponible');
+      Swal.fire({
+        icon: 'warning',
+        title: 'Agotado',
+        text: 'Este producto no cuenta con stock disponible.',
+        confirmButtonColor: '#c5a059'
+      });
       return;
     }
-    await handleAddToCart();
-    navigate('/products');
+    const res = await addToCart(furniture.id, 1, furniture.name);
+    if (res?.success) {
+      navigate('/checkout');
+    }
   };
 
   if (loading) {
@@ -238,7 +247,7 @@ const Details = () => {
                           gl.shadowMap.type = THREE.PCFSoftShadowMap;
                           gl.toneMapping = THREE.ACESFilmicToneMapping;
                           gl.toneMappingExposure = 1.2;
-                          gl.outputEncoding = THREE.sRGBEncoding;
+                          gl.outputColorSpace = THREE.SRGBColorSpace;
                         }}
                       >
                         {/* Enhanced lighting setup for maximum clarity */}

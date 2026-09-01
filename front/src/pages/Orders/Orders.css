@@ -1,0 +1,381 @@
+/* ==========================================================================
+   Orders.css - Historial y Tracking de Pedidos (Edición Luxury)
+   ========================================================================== */
+
+.orders-page {
+  min-height: 80vh;
+}
+
+.order-card {
+  border-radius: 16px;
+  border: 1px solid #eaeaea;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.order-card:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+/* Badges de estado generales */
+.badge-status-paid {
+  background-color: #d1e7dd;
+  color: #0f5132;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 20px;
+}
+
+.badge-status-prep {
+  background-color: #cff4fc;
+  color: #055160;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 20px;
+}
+
+.badge-status-ship {
+  background-color: #fff3cd;
+  color: #664d03;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 20px;
+}
+
+.badge-status-deliv {
+  background-color: #d1e7dd;
+  color: #0f5132;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 20px;
+}
+
+/* ==========================================================================
+   Modal de Tracking Luxury & Stepper
+   ========================================================================== */
+
+.tracking-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(10, 10, 10, 0.75);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 2500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.tracking-modal-dialog {
+  background: #ffffff;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 620px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+  animation: modalSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+}
+
+@keyframes modalSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Header del Modal */
+.tracking-modal-header {
+  background: linear-gradient(135deg, #161616 0%, #242424 100%);
+  border-top: 4px solid #c5a059;
+  padding: 1.5rem 1.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  color: #ffffff !important;
+}
+
+.modal-title-luxury {
+  color: #ffffff !important;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.order-code-badge {
+  background: rgba(197, 160, 89, 0.18);
+  color: #c5a059;
+  font-weight: 700;
+  font-size: 0.8rem;
+  padding: 4px 10px;
+  border-radius: 20px;
+  border: 1px solid rgba(197, 160, 89, 0.4);
+  letter-spacing: 0.5px;
+}
+
+.tracking-header-date {
+  color: #b0b0b0;
+  font-size: 0.82rem;
+}
+
+.tracking-modal-close-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tracking-modal-close-btn:hover {
+  background: #c5a059;
+  border-color: #c5a059;
+  color: #111111;
+  transform: rotate(90deg);
+}
+
+/* Cuerpo del Modal */
+.tracking-modal-body {
+  padding: 1.5rem 1.75rem;
+  overflow-y: auto;
+  flex: 1;
+}
+
+/* Barra de Resumen Rápido */
+.tracking-quick-bar .quick-info-box {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 12px;
+  padding: 0.75rem;
+  text-align: center;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.quick-info-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #6c757d;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.quick-info-val {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #1a1a1a;
+}
+
+.text-gold-accent {
+  color: #b58d3d;
+}
+
+/* Stepper de 4 Etapas */
+.stepper-section {
+  background: #fcfcfc;
+  border: 1px solid #ededed;
+  border-radius: 14px;
+  padding: 1.25rem;
+}
+
+.stepper-section-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #6c757d;
+  text-transform: uppercase;
+}
+
+.stepper-status-note {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #c5a059;
+  background: rgba(197, 160, 89, 0.1);
+  padding: 2px 8px;
+  border-radius: 12px;
+}
+
+.stepper-progress-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+  margin-top: 0.75rem;
+}
+
+.stepper-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.stepper-icon-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  margin-bottom: 0.5rem;
+}
+
+/* Estados del Stepper */
+.step-completed .stepper-icon-circle {
+  background: #198754;
+  color: #ffffff;
+  border: 2px solid #198754;
+}
+
+.step-completed .stepper-label {
+  color: #198754;
+  font-weight: 700;
+}
+
+.step-current .stepper-icon-circle {
+  background: #1a1a1a;
+  color: #c5a059;
+  border: 2px solid #c5a059;
+  box-shadow: 0 0 0 5px rgba(197, 160, 89, 0.25);
+  animation: pulseNode 2s infinite;
+}
+
+.step-current .stepper-label {
+  color: #111111;
+  font-weight: 800;
+}
+
+.step-upcoming .stepper-icon-circle {
+  background: #f1f3f5;
+  color: #adb5bd;
+  border: 2px solid #dee2e6;
+}
+
+.step-upcoming .stepper-label {
+  color: #adb5bd;
+  font-weight: 500;
+}
+
+.stepper-label {
+  font-size: 0.78rem;
+  display: block;
+}
+
+.stepper-desc {
+  font-size: 0.68rem;
+  color: #868e96;
+}
+
+/* Conectores entre pasos */
+.stepper-connector {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  width: 100%;
+  height: 3px;
+  background: #e9ecef;
+  z-index: -1;
+}
+
+.stepper-connector.connector-filled {
+  background: #198754;
+}
+
+@keyframes pulseNode {
+  0% {
+    box-shadow: 0 0 0 0 rgba(197, 160, 89, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(197, 160, 89, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(197, 160, 89, 0);
+  }
+}
+
+/* Mini lista de items */
+.section-mini-heading {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #6c757d;
+  text-transform: uppercase;
+}
+
+.item-mini-title {
+  font-size: 0.85rem;
+}
+
+/* Timeline */
+.timeline-bullet-wrapper {
+  width: 32px;
+}
+
+.timeline-bullet {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #c5a059;
+  color: #111111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+.timeline-bullet.bullet-latest {
+  background: #198754;
+  color: #ffffff;
+  box-shadow: 0 0 0 4px rgba(25, 135, 84, 0.2);
+}
+
+.timeline-line {
+  width: 2px;
+  flex: 1;
+  background: #e2e2e2;
+  margin-top: 4px;
+  min-height: 24px;
+}
+
+.timeline-content-box {
+  border-left: 3px solid #c5a059 !important;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+}
+
+.bg-gold-subtle {
+  background-color: rgba(197, 160, 89, 0.15);
+  color: #84631d;
+  font-weight: 600;
+}
+
+/* Footer del Modal */
+.tracking-modal-footer {
+  padding: 1rem 1.75rem;
+  background: #f8f9fa;
+  border-top: 1px solid #eaeaea;
+}
